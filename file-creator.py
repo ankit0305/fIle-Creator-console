@@ -9,28 +9,50 @@ def generate(size):
     fo.write(b"\0")
     fo.close()
 
+def sizecheck(size):
+    print("Please make sure that the value is below 1024")
+    sys.exit()
 
 def file_creator():
     if sys.argv[2].lower()=="byte":
         size=int(sys.argv[1])
-        generate(size)
+        if size >= 1024:
+            sizecheck(size)
+        else:
+            generate(size)
     elif sys.argv[2].lower()=="kb":
-        size=int(sys.argv[1])*1024
-        generate(size)
+        size=int(sys.argv[1])
+        if size >= 1024:
+            sizecheck(size)
+        else:
+            size=int(sys.argv[1])*1024
+            generate(size)
     
     elif sys.argv[2].lower()=="mb":
-        size=int(sys.argv[1])*1024*1024
-        generate(size)
+        size=int(sys.argv[1])
+        if size >= 1024:
+            sizecheck(size)
+        else:
+            size=int(sys.argv[1])*1024*1024
+            generate(size)
     
     elif sys.argv[2].lower()=="gb":
-        size=int(sys.argv[1])*1024*1024*1024
-        generate(size)
+        size=int(sys.argv[1])
+        if size >= 1024:
+            sizecheck(size)
+        else:
+            size=int(sys.argv[1])*1024*1024*1024
+            generate(size)
     
     elif sys.argv[2].lower()=="tb":
         answer=input("Do you really want to generate a 1 TB File?(Yes/No): ")
         if answer.lower()=="yes":
-            size=int(sys.argv[1])*1024*1024*1024*1024
-            generate(size)
+            size=int(sys.argv[1])
+            if size >= 1024:
+                sizecheck(size)
+            else:
+                size=int(sys.argv[1])*1024*1024*1024*1024
+                generate(size)
         else:
             print("Aborting!!!")
             sys.exit()
@@ -38,8 +60,12 @@ def file_creator():
     elif sys.argv[2].lower()=="pb":
         answer=input("Do you really want to generate a 1 TB File?(Yes/No): ")
         if answer.lower()=="yes":
-            size=int(sys.argv[1])*1024*1024*1024*1024*1024
-            generate(size)
+            size=int(sys.argv[1])
+            if size >= 1024:
+                sizecheck(size)
+            else:
+                size=int(sys.argv[1])*1024*1024*1024*1024*1024
+                generate(size)
         else:
             print("Aborting!!!")
             sys.exit()
